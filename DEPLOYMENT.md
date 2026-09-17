@@ -94,17 +94,17 @@ ADMIN_SECRET=YOUR_STRONG_SECURE_ADMIN_PASSWORD
    curl http://localhost:8085/api/health
    ```
 
-### Option C: Deployment via Vercel (Serverless Cloud Platform)
+### Option C: Deployment via Render (Cloud Platform)
 
-1. Push your project repository to GitHub or install Vercel CLI (`npm i -g vercel`).
-2. Run `vercel` command from the root directory or import the repository in [Vercel Dashboard](https://vercel.com).
-3. In Vercel Project Settings → Environment Variables, add your production variables:
-   - `RAZORPAY_KEY_ID`
-   - `RAZORPAY_KEY_SECRET`
-   - `RAZORPAY_WEBHOOK_SECRET`
-   - `MERCHANT_UPI_ID`
-   - `ADMIN_SECRET`
-4. Deploy! Vercel automatically reads `vercel.json` and routes the app instantly.
+1. Log in to [Render Dashboard](https://dashboard.render.com).
+2. Click **New +** → **Web Service**.
+3. Connect your GitHub repository (`riya-creative-corner`).
+4. Settings:
+   - **Environment**: Node (or Docker)
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+5. Add Environment Variables in Render Dashboard (`RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET`, `RAZORPAY_WEBHOOK_SECRET`, `MERCHANT_UPI_ID`, `ADMIN_SECRET`).
+6. Click **Create Web Service**. Render will deploy your application.
 
 ---
 
