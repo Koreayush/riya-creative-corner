@@ -9,6 +9,7 @@ const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 
 const app = express();
+app.set("trust proxy", 1);
 const PORT = process.env.PORT || 8085;
 
 // Environment config
@@ -954,11 +955,18 @@ app.get("/api/orders/:id", (req, res) => {
  * ADMIN ENDPOINTS (Protected with Admin Secret Header)
  */
 function checkAdminAuth(req, res, next) {
-  const secret = req.headers["x-admin-secret"] || req.query.admin_secret;
-  if (secret && (secret === ADMIN_SECRET || secret === "riya@25" || secret === "admin123")) {
+  const secret = (req.headers["x-admin-secret"] || req.query.admin_secret || "").toString().trim();
+  const validSecrets = [
+    (process.env.ADMIN_SECRET || "").trim(),
+    ADMIN_SECRET ? ADMIN_SECRET.trim() : "",
+    "riya@25",
+    "admin123"
+  ].filter(Boolean);
+
+  if (secret && validSecrets.includes(secret)) {
     return next();
   }
-  return res.status(401).json({ success: false, message: "Unauthorized admin access" });
+  return res.status(401).json({ success: false, message: "Incorrect admin password." });
 }
 
 /**

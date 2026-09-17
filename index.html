@@ -2926,7 +2926,7 @@
             loadInventory();
             loadSettings();
           } else {
-            alert("Incorrect admin password.");
+            alert(data.message || "Incorrect admin password.");
           }
         } catch (err) {
           alert("Error verifying password: " + err.message);
