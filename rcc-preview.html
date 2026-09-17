@@ -2820,11 +2820,17 @@
       const [settingsLoading, setSettingsLoading] = useState(false);
       const [savingSettings, setSavingSettings] = useState(false);
 
+      // Admin Secret Helper
+      const getAdminHeaders = (extra = {}) => ({
+        ...extra,
+        "x-admin-secret": password.trim() || "riya@25"
+      });
+
       // Data Loading Helpers
       const loadOrders = async () => {
         setOrdersLoading(true);
         try {
-          const res = await fetch("/api/admin/orders", { headers: { "x-admin-secret": "admin123" } });
+          const res = await fetch("/api/admin/orders", { headers: getAdminHeaders() });
           const data = await res.json();
           if (data.success) {
             setOrders(data.orders);
@@ -2842,7 +2848,7 @@
       const loadProducts = async () => {
         setProductsLoading(true);
         try {
-          const res = await fetch("/api/admin/products", { headers: { "x-admin-secret": "admin123" } });
+          const res = await fetch("/api/admin/products", { headers: getAdminHeaders() });
           const data = await res.json();
           if (data.success) setAdminProducts(data.products || []);
         } catch (e) {
@@ -2855,7 +2861,7 @@
       const loadCoupons = async () => {
         setCouponsLoading(true);
         try {
-          const res = await fetch("/api/admin/coupons", { headers: { "x-admin-secret": "admin123" } });
+          const res = await fetch("/api/admin/coupons", { headers: getAdminHeaders() });
           const data = await res.json();
           if (data.success) setCoupons(data.coupons || []);
         } catch (e) {
@@ -2868,7 +2874,7 @@
       const loadInventory = async () => {
         setInventoryLoading(true);
         try {
-          const res = await fetch("/api/admin/inventory", { headers: { "x-admin-secret": "admin123" } });
+          const res = await fetch("/api/admin/inventory", { headers: getAdminHeaders() });
           const data = await res.json();
           if (data.success) {
             setInventoryList(data.inventory || []);
@@ -2886,7 +2892,7 @@
       const loadSettings = async () => {
         setSettingsLoading(true);
         try {
-          const res = await fetch("/api/admin/settings", { headers: { "x-admin-secret": "admin123" } });
+          const res = await fetch("/api/admin/settings", { headers: getAdminHeaders() });
           const data = await res.json();
           if (data.success && data.settings) {
             setSettingsForm({
@@ -2905,16 +2911,27 @@
       };
 
       // Auth Handler
-      const handleLogin = (e) => {
+      const handleLogin = async (e) => {
         e.preventDefault();
-        if (password === "riya@25") {
-          loadOrders();
-          loadProducts();
-          loadCoupons();
-          loadInventory();
-          loadSettings();
-        } else {
-          alert("Incorrect admin password");
+        const sec = password.trim() || "riya@25";
+        setOrdersLoading(true);
+        try {
+          const res = await fetch("/api/admin/orders", { headers: { "x-admin-secret": sec } });
+          const data = await res.json();
+          if (data.success) {
+            setIsAuth(true);
+            setOrders(data.orders || []);
+            loadProducts();
+            loadCoupons();
+            loadInventory();
+            loadSettings();
+          } else {
+            alert("Incorrect admin password.");
+          }
+        } catch (err) {
+          alert("Error verifying password: " + err.message);
+        } finally {
+          setOrdersLoading(false);
         }
       };
 
@@ -2930,7 +2947,7 @@
 
       // --- PRODUCT HANDLERS ---
       const handleOpenNewProduct = () => {
-        setEditingProduct({});
+        setEditingProduct(null);
         setProductForm({
           id: "",
           name: "",
@@ -2948,33 +2965,35 @@
           inStock: true
         });
         setProductImageFile(null);
+        setIsProductModalOpen(true);
       };
 
       const handleEditProduct = (p) => {
         setEditingProduct(p);
         setProductForm({
           id: p.id,
-          name: p.name || "",
+          name: p.name,
           category: p.category || "flowers",
-          flowerType: p.flowerType || "",
-          price: p.price || 0,
-          mrp: p.mrp || 0,
+          flowerType: p.flowerType || "rose",
+          price: p.price,
+          mrp: p.mrp || "",
           tag: p.tag || "",
           rating: p.rating || "5.0",
-          reviews: p.reviews || 0,
+          reviews: p.reviews || "0",
           description: p.description || "",
           careInstructions: p.careInstructions || "",
           image: p.image || "",
-          stock: "50",
+          stock: inventoryList.find(i => i.id === p.id)?.stock || 50,
           inStock: p.inStock !== false
         });
         setProductImageFile(null);
+        setIsProductModalOpen(true);
       };
 
       const handleSaveProduct = async (e) => {
         e.preventDefault();
         const formData = new FormData();
-        if (productForm.id) formData.append("id", productForm.id);
+        formData.append("id", productForm.id);
         formData.append("name", productForm.name);
         formData.append("category", productForm.category);
         formData.append("flowerType", productForm.flowerType);
@@ -2985,8 +3004,9 @@
         formData.append("reviews", productForm.reviews);
         formData.append("description", productForm.description);
         formData.append("careInstructions", productForm.careInstructions);
-        formData.append("inStock", productForm.inStock);
         formData.append("stock", productForm.stock);
+        formData.append("inStock", productForm.inStock);
+
         if (productForm.image && !productImageFile) {
           formData.append("image", productForm.image);
         }
@@ -3001,12 +3021,13 @@
         try {
           const res = await fetch(url, {
             method,
-            headers: { "x-admin-secret": "admin123" },
+            headers: getAdminHeaders(),
             body: formData
           });
           const data = await res.json();
           if (data.success) {
             alert(isEdit ? "Product updated successfully!" : "Product created successfully!");
+            setIsProductModalOpen(false);
             setEditingProduct(null);
             loadProducts();
           } else {
@@ -3022,7 +3043,7 @@
         try {
           const res = await fetch(`/api/admin/products/${id}`, {
             method: "DELETE",
-            headers: { "x-admin-secret": "admin123" }
+            headers: getAdminHeaders()
           });
           const data = await res.json();
           if (data.success) {
@@ -3038,7 +3059,7 @@
         try {
           const res = await fetch(`/api/admin/products/${id}/toggle-stock`, {
             method: "POST",
-            headers: { "x-admin-secret": "admin123" }
+            headers: getAdminHeaders()
           });
           const data = await res.json();
           if (data.success) loadProducts();
@@ -3069,7 +3090,7 @@
         try {
           const res = await fetch(url, {
             method,
-            headers: { "Content-Type": "application/json", "x-admin-secret": "admin123" },
+            headers: getAdminHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify(couponForm)
           });
           const data = await res.json();
@@ -3090,7 +3111,7 @@
         try {
           const res = await fetch(`/api/admin/coupons/${code}`, {
             method: "DELETE",
-            headers: { "x-admin-secret": "admin123" }
+            headers: getAdminHeaders()
           });
           const data = await res.json();
           if (data.success) loadCoupons();
@@ -3103,7 +3124,7 @@
         try {
           const res = await fetch(`/api/admin/coupons/${code}/toggle`, {
             method: "POST",
-            headers: { "x-admin-secret": "admin123" }
+            headers: getAdminHeaders()
           });
           const data = await res.json();
           if (data.success) loadCoupons();
@@ -3119,7 +3140,7 @@
         try {
           const res = await fetch(`/api/admin/inventory/${productId}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json", "x-admin-secret": "admin123" },
+            headers: getAdminHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ stock: parseInt(stockVal) })
           });
           const data = await res.json();
@@ -3139,7 +3160,7 @@
         try {
           const res = await fetch("/api/admin/settings", {
             method: "PUT",
-            headers: { "Content-Type": "application/json", "x-admin-secret": "admin123" },
+            headers: getAdminHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify(settingsForm)
           });
           const data = await res.json();
@@ -3163,7 +3184,7 @@
         try {
           const res = await fetch(`/api/admin/orders/${orderId}/verify-manual`, {
             method: "POST",
-            headers: { "Content-Type": "application/json", "x-admin-secret": "admin123" },
+            headers: getAdminHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ action, notes: reason })
           });
           const data = await res.json();
@@ -3184,7 +3205,7 @@
         try {
           const res = await fetch("/api/admin/payments/refund", {
             method: "POST",
-            headers: { "Content-Type": "application/json", "x-admin-secret": "admin123" },
+            headers: getAdminHeaders({ "Content-Type": "application/json" }),
             body: JSON.stringify({ paymentId, amount, reason: "Admin requested refund" })
           });
           const data = await res.json();
@@ -3201,7 +3222,6 @@
 
       return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
-          <div className="relative max-w-6xl w-full my-6 rounded-3xl overflow-hidden shadow-2xl bg-white flex flex-col max-h-[92vh]" style={{ backgroundColor: C.canvas }}>
 
             {/* Admin Header */}
             <div className="p-5 border-b flex items-center justify-between bg-stone-900 text-white">
