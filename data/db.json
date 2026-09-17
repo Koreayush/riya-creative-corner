@@ -1,0 +1,696 @@
+{
+  "orders": [
+    {
+      "id": "RCC-ORD-91324623",
+      "customer": {
+        "name": "Tamper Test User",
+        "phone": "9876543210",
+        "email": "",
+        "address": "123 Security Lane",
+        "city": "Mumbai",
+        "state": "",
+        "pincode": "400001",
+        "notes": ""
+      },
+      "items": [
+        {
+          "id": "f-rose",
+          "stemCount": 3,
+          "price": 1,
+          "totalPrice": 549,
+          "quantity": 1,
+          "name": "Handcrafted Velvet Red Rose",
+          "unitPrice": 549
+        }
+      ],
+      "subtotal": 549,
+      "shippingFee": 99,
+      "discount": 0,
+      "couponCode": null,
+      "total": 648,
+      "status": "CONFIRMED",
+      "paymentMethod": "RAZORPAY",
+      "paymentId": "PAY-91324675",
+      "createdAt": "2026-09-16T19:28:33.504Z",
+      "updatedAt": "2026-09-16T19:28:33.540Z",
+      "inventoryDeducted": true
+    },
+    {
+      "id": "RCC-ORD-91352387",
+      "customer": {
+        "name": "Rohan Deshmukh",
+        "phone": "9123456780",
+        "email": "",
+        "address": "Plot 42, Green Park",
+        "city": "Pune",
+        "state": "",
+        "pincode": "411001",
+        "notes": ""
+      },
+      "items": [
+        {
+          "id": "b-symphony",
+          "quantity": 1,
+          "name": "Blush Lily & Tulip Symphony",
+          "unitPrice": 1599,
+          "totalPrice": 1599
+        }
+      ],
+      "subtotal": 1599,
+      "shippingFee": 99,
+      "discount": 0,
+      "couponCode": null,
+      "total": 1698,
+      "status": "CONFIRMED",
+      "paymentMethod": "MANUAL_UPI",
+      "paymentId": "PAY-91352333",
+      "createdAt": "2026-09-16T19:28:33.523Z",
+      "updatedAt": "2026-09-16T19:28:33.534Z",
+      "inventoryDeducted": true
+    },
+    {
+      "id": "RCC-ORD-91354913",
+      "customer": {
+        "name": "Retry Customer",
+        "phone": "9988776655",
+        "email": "",
+        "address": "Retry Villa 7",
+        "city": "Bengaluru",
+        "state": "",
+        "pincode": "560001",
+        "notes": ""
+      },
+      "items": [
+        {
+          "id": "f-sunflower",
+          "stemCount": 1,
+          "quantity": 1,
+          "name": "Sun-Kissed Golden Sunflower",
+          "unitPrice": 229,
+          "totalPrice": 229
+        }
+      ],
+      "subtotal": 229,
+      "shippingFee": 99,
+      "discount": 0,
+      "couponCode": null,
+      "total": 328,
+      "status": "PENDING",
+      "paymentMethod": "RAZORPAY",
+      "paymentId": "PAY-91354991",
+      "createdAt": "2026-09-16T19:28:33.631Z",
+      "updatedAt": "2026-09-16T19:28:33.696Z"
+    }
+  ],
+  "payments": [
+    {
+      "id": "PAY-91324675",
+      "orderId": "RCC-ORD-91324623",
+      "gateway": "RAZORPAY",
+      "gatewayOrderId": "order_7385dea86a6f4767",
+      "gatewayPaymentId": "pay_webhook_capture_111",
+      "amount": 648,
+      "currency": "INR",
+      "paymentMethod": "RAZORPAY",
+      "status": "CAPTURED",
+      "signatureVerified": true,
+      "webhookVerified": true,
+      "utr": null,
+      "screenshotUrl": null,
+      "createdAt": "2026-09-16T19:28:33.504Z",
+      "updatedAt": "2026-09-16T19:28:33.540Z"
+    },
+    {
+      "id": "PAY-91352333",
+      "orderId": "RCC-ORD-91352387",
+      "gateway": "MANUAL_UPI",
+      "gatewayOrderId": null,
+      "gatewayPaymentId": null,
+      "amount": 1698,
+      "currency": "INR",
+      "paymentMethod": "MANUAL_UPI",
+      "status": "CAPTURED",
+      "signatureVerified": false,
+      "webhookVerified": false,
+      "utr": "426182910394",
+      "screenshotUrl": null,
+      "createdAt": "2026-09-16T19:28:33.523Z",
+      "updatedAt": "2026-09-16T19:28:33.534Z",
+      "adminVerified": true,
+      "adminNotes": "Verified manually against bank statement"
+    },
+    {
+      "id": "PAY-91354991",
+      "orderId": "RCC-ORD-91354913",
+      "gateway": "RAZORPAY",
+      "gatewayOrderId": "order_2f32a4d3e038f1b5",
+      "gatewayPaymentId": null,
+      "amount": 328,
+      "currency": "INR",
+      "paymentMethod": "RAZORPAY",
+      "status": "PENDING",
+      "signatureVerified": false,
+      "webhookVerified": false,
+      "utr": null,
+      "screenshotUrl": null,
+      "createdAt": "2026-09-16T19:28:33.631Z",
+      "updatedAt": "2026-09-16T19:28:33.696Z"
+    }
+  ],
+  "processedWebhooks": [
+    "evt_test_unique_554433"
+  ],
+  "inventory": {
+    "f-rose": 99,
+    "f-tulip": 120,
+    "f-sunflower": 80,
+    "f-lily-pink": 75,
+    "f-lily-blue": 50,
+    "f-lily-magenta": 60,
+    "b-symphony": 24,
+    "b-ruby": 20,
+    "b-wine": 15,
+    "b-petite": 30,
+    "b-lavender": 20,
+    "bd-meadow": 40,
+    "g-bear": 50,
+    "g-card": 200,
+    "a-pearls": 100
+  },
+  "coupons": [
+    {
+      "code": "EVERBLOOM10",
+      "type": "PERCENT",
+      "value": 10,
+      "minOrder": 999,
+      "active": true
+    },
+    {
+      "code": "FIRSTBLOOM",
+      "type": "FIXED",
+      "value": 150,
+      "minOrder": 1299,
+      "active": true
+    },
+    {
+      "code": "RIYASPECIAL",
+      "type": "PERCENT",
+      "value": 15,
+      "minOrder": 1999,
+      "active": true
+    }
+  ],
+  "products": [
+    {
+      "id": "f-rose",
+      "name": "Handcrafted Velvet Red Rose",
+      "category": "flowers",
+      "flowerType": "rose",
+      "tag": "Bestseller",
+      "rating": "4.9",
+      "reviews": 128,
+      "price": 199,
+      "mrp": 249,
+      "image": "photos/Rose.jpeg",
+      "description": "Meticulously hand-twisted red velvet chenille rose with textured sepals and a flexible lifelike stem.",
+      "careInstructions": "Everlasting velvet chenille. Never requires watering or sunlight.",
+      "colors": [
+        "Velvet Crimson Red",
+        "Soft Blush Pink",
+        "Silk Ivory White"
+      ],
+      "variants": [
+        {
+          "id": "v1",
+          "label": "1 Stem (Single Rose)",
+          "price": 199,
+          "mrp": 249,
+          "count": 1
+        },
+        {
+          "id": "v2",
+          "label": "3 Stems Trio",
+          "price": 549,
+          "mrp": 747,
+          "count": 3,
+          "discount": "Save 26%"
+        },
+        {
+          "id": "v3",
+          "label": "5 Stems Bundle",
+          "price": 899,
+          "mrp": 1245,
+          "count": 5,
+          "discount": "Save 28%"
+        },
+        {
+          "id": "v4",
+          "label": "10 Stems Statement Bunch",
+          "price": 1699,
+          "mrp": 2490,
+          "count": 10,
+          "discount": "Save 32%"
+        }
+      ],
+      "relatedIds": [
+        "f-tulip",
+        "f-sunflower",
+        "b-ruby",
+        "g-bear"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "f-tulip",
+      "name": "Handcrafted Pastel Tulip",
+      "category": "flowers",
+      "flowerType": "tulip",
+      "tag": "Popular",
+      "rating": "4.9",
+      "reviews": 94,
+      "price": 149,
+      "mrp": 199,
+      "image": "photos/roses.jpeg",
+      "description": "Artisan two-tone lilac and candy pink chenille tulip.",
+      "careInstructions": "Everlasting flower. Do not wash with water.",
+      "colors": [
+        "Lilac Mist & Pink",
+        "Candy Pink",
+        "Warm Peach"
+      ],
+      "variants": [
+        {
+          "id": "v1",
+          "label": "1 Tulip Stem",
+          "price": 149,
+          "mrp": 199,
+          "count": 1
+        },
+        {
+          "id": "v2",
+          "label": "3 Tulips Trio",
+          "price": 419,
+          "mrp": 597,
+          "count": 3,
+          "discount": "Save 30%"
+        },
+        {
+          "id": "v3",
+          "label": "5 Tulips Bundle",
+          "price": 679,
+          "mrp": 995,
+          "count": 5,
+          "discount": "Save 32%"
+        },
+        {
+          "id": "v4",
+          "label": "10 Tulips Bunch",
+          "price": 1299,
+          "mrp": 1990,
+          "count": 10,
+          "discount": "Save 35%"
+        }
+      ],
+      "relatedIds": [
+        "f-rose",
+        "f-sunflower",
+        "b-symphony",
+        "g-card"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "f-sunflower",
+      "name": "Sun-Kissed Chenille Sunflower",
+      "category": "flowers",
+      "flowerType": "sunflower",
+      "tag": "Trending",
+      "rating": "4.8",
+      "reviews": 82,
+      "price": 189,
+      "mrp": 249,
+      "image": "photos/Sunflowers.jpeg",
+      "description": "Radiant golden yellow sunflower with a deep chocolate brown velvet center.",
+      "careInstructions": "Durable chenille craft.",
+      "colors": [
+        "Golden Sunshine Yellow",
+        "Warm Amber Ochre"
+      ],
+      "variants": [
+        {
+          "id": "v1",
+          "label": "1 Stem",
+          "price": 189,
+          "mrp": 249,
+          "count": 1
+        },
+        {
+          "id": "v2",
+          "label": "3 Stems Trio",
+          "price": 519,
+          "mrp": 747,
+          "count": 3,
+          "discount": "Save 30%"
+        },
+        {
+          "id": "v3",
+          "label": "5 Stems Meadow Bundle",
+          "price": 849,
+          "mrp": 1245,
+          "count": 5,
+          "discount": "Save 32%"
+        }
+      ],
+      "relatedIds": [
+        "f-rose",
+        "f-lily-pink",
+        "bd-meadow",
+        "g-bear"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "f-lily-pink",
+      "name": "Velvet Blush Starlight Lily",
+      "category": "flowers",
+      "flowerType": "lily",
+      "tag": "Signature",
+      "rating": "5.0",
+      "reviews": 67,
+      "price": 229,
+      "mrp": 299,
+      "image": "photos/tulip.jpeg",
+      "description": "Statement pink lily with delicate ruffled white-trimmed petals.",
+      "careInstructions": "Petals are gently bendable.",
+      "colors": [
+        "Blush Pink & White",
+        "Fuchsia & White"
+      ],
+      "variants": [
+        {
+          "id": "v1",
+          "label": "1 Lily Stem",
+          "price": 229,
+          "mrp": 299,
+          "count": 1
+        },
+        {
+          "id": "v2",
+          "label": "3 Lilies Trio",
+          "price": 629,
+          "mrp": 897,
+          "count": 3,
+          "discount": "Save 30%"
+        },
+        {
+          "id": "v3",
+          "label": "5 Lilies Bundle",
+          "price": 999,
+          "mrp": 1495,
+          "count": 5,
+          "discount": "Save 33%"
+        }
+      ],
+      "relatedIds": [
+        "f-lily-blue",
+        "b-symphony",
+        "f-rose"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "f-lily-blue",
+      "name": "Royal Azure Striped Lily",
+      "category": "flowers",
+      "flowerType": "lily",
+      "tag": "Rare Exotic",
+      "rating": "5.0",
+      "reviews": 45,
+      "price": 249,
+      "mrp": 329,
+      "image": "photos/blue%20tulip.jpeg",
+      "description": "Striking two-tone cyan and cobalt blue striped velvet petals.",
+      "careInstructions": "Handcrafted with premium color-fast chenille velvet.",
+      "colors": [
+        "Royal Azure & Cyan",
+        "Deep Cobalt"
+      ],
+      "variants": [
+        {
+          "id": "v1",
+          "label": "1 Stem",
+          "price": 249,
+          "mrp": 329,
+          "count": 1
+        },
+        {
+          "id": "v2",
+          "label": "3 Stems Trio",
+          "price": 689,
+          "mrp": 987,
+          "count": 3,
+          "discount": "Save 30%"
+        },
+        {
+          "id": "v3",
+          "label": "5 Stems Bundle",
+          "price": 1099,
+          "mrp": 1645,
+          "count": 5,
+          "discount": "Save 33%"
+        }
+      ],
+      "relatedIds": [
+        "f-lily-pink",
+        "b-ruby",
+        "f-tulip"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "f-lily-magenta",
+      "name": "Starlight Magenta Velvet Lily",
+      "category": "flowers",
+      "flowerType": "lily",
+      "tag": "New Arrival",
+      "rating": "4.9",
+      "reviews": 39,
+      "price": 229,
+      "mrp": 299,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.44.50.jpeg",
+      "description": "Vivid magenta center petals with snow-white fringe.",
+      "careInstructions": "Gently wipe with dry microfiber cloth.",
+      "colors": [
+        "Vivid Magenta & White"
+      ],
+      "variants": [
+        {
+          "id": "v1",
+          "label": "1 Stem",
+          "price": 229,
+          "mrp": 299,
+          "count": 1
+        },
+        {
+          "id": "v2",
+          "label": "3 Stems Trio",
+          "price": 629,
+          "mrp": 897,
+          "count": 3,
+          "discount": "Save 30%"
+        }
+      ],
+      "relatedIds": [
+        "f-rose",
+        "b-wine",
+        "f-lily-pink"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "b-symphony",
+      "name": "Blush Lily & Tulip Symphony Bouquet",
+      "category": "bouquets",
+      "flowerType": "mixed",
+      "tag": "Bestseller",
+      "rating": "4.9",
+      "reviews": 84,
+      "price": 1399,
+      "mrp": 1699,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.46.53%20(2).jpeg",
+      "description": "16 handcrafted stems of soft blush lilies, pink tulips, mini daisies.",
+      "wrap": "Blush & White Layered Wrap",
+      "stemsInfo": "16 Handcrafted Stems",
+      "relatedIds": [
+        "f-rose",
+        "g-bear",
+        "g-card",
+        "a-pearls"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "b-ruby",
+      "name": "Midnight Crimson Velvet Lilies Bouquet",
+      "category": "bouquets",
+      "flowerType": "lily",
+      "tag": "Statement Piece",
+      "rating": "5.0",
+      "reviews": 62,
+      "price": 1799,
+      "mrp": 2199,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.46.52%20(2).jpeg",
+      "description": "12 statement ruby red velvet lilies in pleated black wrap.",
+      "wrap": "Midnight Black Pleated Wrap",
+      "stemsInfo": "12 Statement Velvet Lilies",
+      "relatedIds": [
+        "f-rose",
+        "g-card",
+        "a-pearls"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "b-wine",
+      "name": "Royal Wine Velvet Lilies Bouquet",
+      "category": "bouquets",
+      "flowerType": "lily",
+      "tag": "Signature",
+      "rating": "4.9",
+      "reviews": 47,
+      "price": 1599,
+      "mrp": 1899,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.46.52%20(1).jpeg",
+      "description": "14 deep burgundy velvet lilies with white stamens.",
+      "wrap": "Crisp White & Pearls",
+      "stemsInfo": "14 Handcrafted Stems",
+      "relatedIds": [
+        "f-rose",
+        "g-bear",
+        "g-card"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "b-petite",
+      "name": "Sweet Petite Peony & Tulip Wrap",
+      "category": "bouquets",
+      "flowerType": "mixed",
+      "tag": "Gift Fav",
+      "rating": "4.9",
+      "reviews": 53,
+      "price": 999,
+      "mrp": 1199,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.46.52.jpeg",
+      "description": "8 petite stems including multi-layered pink peony.",
+      "wrap": "Translucent White Wrap",
+      "stemsInfo": "8 Petite Stems",
+      "relatedIds": [
+        "f-tulip",
+        "g-card",
+        "a-pearls"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "b-lavender",
+      "name": "Lavender & Magenta Dream Wrap",
+      "category": "bouquets",
+      "flowerType": "mixed",
+      "tag": "New",
+      "rating": "5.0",
+      "reviews": 38,
+      "price": 1449,
+      "mrp": 1749,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.46.53%20(1).jpeg",
+      "description": "15 stems of two-tone lavender & bright fuchsia tulips.",
+      "wrap": "Lilac Translucent Cloud",
+      "stemsInfo": "15 Stems Bouquet",
+      "relatedIds": [
+        "f-tulip",
+        "g-card",
+        "g-bear"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "bd-meadow",
+      "name": "Meadow Harmony Trio Stem Bundle",
+      "category": "bundles",
+      "flowerType": "mixed",
+      "tag": "Bundle Value",
+      "rating": "4.8",
+      "reviews": 31,
+      "price": 549,
+      "mrp": 699,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.46.53.jpeg",
+      "description": "Curated bunch of 3 assorted artisan blooms.",
+      "careInstructions": "Trim or bend stems to match your vase height.",
+      "relatedIds": [
+        "f-sunflower",
+        "f-rose",
+        "g-card"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "g-bear",
+      "name": "Mini Plush Cuddle Bear Keepsake",
+      "category": "gifts",
+      "tag": "Gift Add-on",
+      "rating": "4.9",
+      "reviews": 112,
+      "price": 299,
+      "mrp": 399,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.46.52.jpeg",
+      "description": "Adorable miniature plush bear with satin ribbon bow.",
+      "relatedIds": [
+        "f-rose",
+        "b-symphony"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "g-card",
+      "name": "Wax-Sealed Botanical Greeting Card",
+      "category": "gifts",
+      "tag": "Handcrafted",
+      "rating": "5.0",
+      "reviews": 140,
+      "price": 79,
+      "mrp": 120,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.46.53%20(2).jpeg",
+      "description": "Thick handmade cotton paper card with calligraphy note.",
+      "relatedIds": [
+        "f-rose",
+        "f-tulip",
+        "b-symphony"
+      ],
+      "inStock": true
+    },
+    {
+      "id": "a-pearls",
+      "name": "Lustrous Pearl Garland Wrap Accent",
+      "category": "accessories",
+      "tag": "Glamour",
+      "rating": "4.9",
+      "reviews": 58,
+      "price": 89,
+      "mrp": 149,
+      "image": "photos/WhatsApp%20Image%202026-09-12%20at%2013.46.52%20(2).jpeg",
+      "description": "Faux pearl garland string to wrap around stems or bouquets.",
+      "relatedIds": [
+        "f-rose",
+        "b-ruby"
+      ],
+      "inStock": true
+    }
+  ],
+  "settings": {
+    "businessName": "Riyas Creative Corner",
+    "upiId": "rianandagawli11-1@okhdfcbank",
+    "deliveryFee": 99,
+    "freeDeliveryThreshold": 1999,
+    "address": "Warthi, Bhandara, Maharashtra, India"
+  }
+}

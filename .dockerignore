@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+.env
+.env.local
+.git
+.gitignore
+.dockerignore
+brain
+.system_generated
+ scratch
+*.tmp
+tests

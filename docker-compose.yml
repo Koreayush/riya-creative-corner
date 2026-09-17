@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: riyas-creative-corner
+    restart: always
+    ports:
+      - "8085:8085"
+    environment:
+      - NODE_ENV=production
+      - PORT=8085
+      - RAZORPAY_KEY_ID=${RAZORPAY_KEY_ID:-rzp_live_PLACEHOLDER}
+      - RAZORPAY_KEY_SECRET=${RAZORPAY_KEY_SECRET:-secret_PLACEHOLDER}
+      - RAZORPAY_WEBHOOK_SECRET=${RAZORPAY_WEBHOOK_SECRET:-whsec_PLACEHOLDER}
+      - MERCHANT_UPI_ID=${MERCHANT_UPI_ID:-rianandagawli11-1@okhdfcbank}
+      - MERCHANT_NAME=${MERCHANT_NAME:-Riyas Creative Corner}
+      - ADMIN_SECRET=${ADMIN_SECRET:-admin123}
+      - CORS_ORIGINS=${CORS_ORIGINS:-https://riyascreativecorner.com}
+    volumes:
+      - ./data:/app/data
+      - ./uploads:/app/uploads
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:8085/api/health || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
