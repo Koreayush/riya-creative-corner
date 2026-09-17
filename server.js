@@ -18,13 +18,23 @@ const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_WEBHOOK_SECRET || "whsec_Ev
 const MERCHANT_UPI_ID = process.env.MERCHANT_UPI_ID || "rianandagawli11-1@okhdfcbank";
 const ADMIN_SECRET = process.env.ADMIN_SECRET || "admin123";
 
-// Ensure data & upload directories exist
+// Ensure data & upload directories exist safely (compatible with Vercel serverless read-only filesystem)
 const DATA_DIR = path.join(__dirname, "data");
-const UPLOAD_DIR = path.join(__dirname, "uploads");
+const UPLOAD_DIR = process.env.VERCEL ? path.join("/tmp", "uploads") : path.join(__dirname, "uploads");
 const PRODUCT_IMG_DIR = path.join(UPLOAD_DIR, "products");
-if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
-if (!fs.existsSync(PRODUCT_IMG_DIR)) fs.mkdirSync(PRODUCT_IMG_DIR, { recursive: true });
+
+try {
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+} catch (e) {
+  console.warn("[SERVERLESS] Using read-only DATA_DIR");
+}
+
+try {
+  if (!fs.existsSync(UPLOAD_DIR)) fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+  if (!fs.existsSync(PRODUCT_IMG_DIR)) fs.mkdirSync(PRODUCT_IMG_DIR, { recursive: true });
+} catch (e) {
+  console.warn("[SERVERLESS] Using fallback UPLOAD_DIR in /tmp");
+}
 
 // Setup file upload for UPI receipts
 const storage = multer.diskStorage({
@@ -218,9 +228,13 @@ function loadDb() {
 }
 
 function saveDb(data) {
-  const tempFile = DB_FILE + ".tmp";
-  fs.writeFileSync(tempFile, JSON.stringify(data, null, 2), "utf8");
-  fs.renameSync(tempFile, DB_FILE);
+  try {
+    const tempFile = DB_FILE + ".tmp";
+    fs.writeFileSync(tempFile, JSON.stringify(data, null, 2), "utf8");
+    fs.renameSync(tempFile, DB_FILE);
+  } catch (err) {
+    console.warn("[SERVERLESS] Warning: Could not save db.json to disk (read-only filesystem):", err.message);
+  }
 }
 
 // -------------------------------------------------------------------------------------
